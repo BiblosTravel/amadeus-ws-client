@@ -886,6 +886,22 @@ class Client extends Base
     }
 
     /**
+     * Ticket_RetrieveListOfTSM
+     *
+     * @param RequestOptions\TicketRetrieveListOfTSMOptions $options
+     * @param array $messageOptions (OPTIONAL)
+     * @return Result
+     */
+    public function Ticket_RetrieveListOfTSM(
+        RequestOptions\TicketRetrieveListOfTSMOptions $options,
+        $messageOptions = []
+    ) {
+        $msgName = 'Ticket_RetrieveListOfTSM';
+
+        return $this->callMessage($msgName, $options, $messageOptions);
+    }
+
+    /**
      * Ticket_CheckEligibility
      *
      * @param RequestOptions\TicketCheckEligibilityOptions $options
