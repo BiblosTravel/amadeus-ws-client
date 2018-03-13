@@ -888,11 +888,11 @@ class Client extends Base
     /**
      * Ticket_RetrieveListOfTSM
      *
-     * @param RequestOptions\TicketRetrieveListOfTSMOptions $options
+     * @param RequestOptions\ticketRetrieveListOfTSMOptions $options
      * @param array $messageOptions (OPTIONAL)
      * @return Result
      */
-    public function Ticket_RetrieveListOfTSM(
+    public function ticketRetrieveListOfTSM(
         RequestOptions\TicketRetrieveListOfTSMOptions $options,
         $messageOptions = []
     ) {

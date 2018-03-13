@@ -20,21 +20,27 @@
  * @license https://opensource.org/licenses/Apache-2.0 Apache 2.0
  */
 
-namespace Amadeus\Client\RequestOptions;
+namespace Amadeus\Client\RequestCreator\Converter\Ticket;
+
+use Amadeus\Client\RequestCreator\Converter\BaseConverter;
+use Amadeus\Client\RequestOptions\TicketRetrieveListOfTSMOptions;
+use Amadeus\Client\Struct;
 
 /**
- * Ticket_RetrieveListOfTSM Request options.
+ * RetrieveListOfTSM Request converter
  *
- * @package Amadeus\Client\RequestOptions
+ * @package Amadeus\Client\RequestCreator\Converter\Ticket
  * @author Dieter Devlieghere <dermikagh@gmail.com>
  */
-class TicketRetrieveListOfTSMOptions extends Base
+class RetrieveListOfTSMConv extends BaseConverter
 {
     /**
-     * passenger to display.
-     *
-     * @var int
+     * @param TicketRetrieveListOfTSMOptions $requestOptions
+     * @param int|string $version
+     * @return Struct\Ticket\RetrieveListOfTSM
      */
-    public $passenger;
-
+    public function convert($requestOptions, $version)
+    {
+        return new Struct\Ticket\RetrieveListOfTSM($requestOptions);
+    }
 }

@@ -159,7 +159,7 @@ class Base implements RequestCreatorInterface
                 /** @var ConvertInterface $builder */
                 $builder = new $builderClass();
                 $builder->setParams($this->params);
-
+    
                 $this->messageBuilders[$messageName] = $builder;
             }
         }
