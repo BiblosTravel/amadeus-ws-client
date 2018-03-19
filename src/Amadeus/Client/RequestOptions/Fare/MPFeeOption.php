@@ -20,36 +20,34 @@
  * @license https://opensource.org/licenses/Apache-2.0 Apache 2.0
  */
 
-namespace Amadeus\Client\RequestOptions\Air\SellFromRecommendation;
+namespace Amadeus\Client\RequestOptions\Fare;
 
 use Amadeus\Client\LoadParamsFromArray;
+use Amadeus\Client\RequestOptions\Fare\MasterPricer\FeeDetails;
 
 /**
- * Itinerary
+ * MasterPricer FeeOption request settings
  *
- * @package Amadeus\Client\RequestOptions\Air\SellFromRecommendation
- * @author dieter <dermikagh@gmail.com>
+ * @package Amadeus\Client\RequestOptions\Fare
+ * @author Friedemann Schmuhl <friedemann@schmuhl.eu>
  */
-class Itinerary extends LoadParamsFromArray
+class MPFeeOption extends LoadParamsFromArray
 {
+    const TYPE_BOOKING_FEES = "OA";
+    const TYPE_TICKETING_FEES = "OB";
+    const TYPE_SERVICE_FEES = "OC";
+
     /**
-     * Departure location
+     * Carrier fee type.
      *
      * @var string
      */
-    public $from;
+    public $type;
 
     /**
-     * Arrival location
+     * Details for each fee.
      *
-     * @var string
+     * @var FeeDetails[]
      */
-    public $to;
-
-    /**
-     * Flight segments
-     *
-     * @var Segment[]
-     */
-    public $segments = [];
+    public $feeDetails;
 }

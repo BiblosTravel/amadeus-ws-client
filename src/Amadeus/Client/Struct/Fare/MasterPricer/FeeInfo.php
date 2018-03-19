@@ -20,36 +20,30 @@
  * @license https://opensource.org/licenses/Apache-2.0 Apache 2.0
  */
 
-namespace Amadeus\Client\RequestOptions\Air\SellFromRecommendation;
+namespace Amadeus\Client\Struct\Fare\MasterPricer;
 
-use Amadeus\Client\LoadParamsFromArray;
+use Amadeus\Client\RequestOptions\Fare\MasterPricer\FeeDetails as FeeDetailsRequest;
 
 /**
- * Itinerary
+ * FeeInfo
  *
- * @package Amadeus\Client\RequestOptions\Air\SellFromRecommendation
- * @author dieter <dermikagh@gmail.com>
+ * @package Amadeus\Client\Struct\Fare\MasterPricer
+ * @author Friedemann Schmuhl <friedemann@schmuhl.eu>
  */
-class Itinerary extends LoadParamsFromArray
+class FeeInfo
 {
     /**
-     * Departure location
-     *
-     * @var string
+     * @var DataTypeInformation
      */
-    public $from;
+    public $dataTypeInformation;
 
     /**
-     * Arrival location
+     * FeeInfo constructor.
      *
-     * @var string
+     * @param FeeDetailsRequest $feeDetails
      */
-    public $to;
-
-    /**
-     * Flight segments
-     *
-     * @var Segment[]
-     */
-    public $segments = [];
+    public function __construct(FeeDetailsRequest $feeDetails)
+    {
+        $this->dataTypeInformation = new DataTypeInformation($feeDetails);
+    }
 }

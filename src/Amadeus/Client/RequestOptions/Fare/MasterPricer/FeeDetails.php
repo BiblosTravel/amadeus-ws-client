@@ -20,36 +20,48 @@
  * @license https://opensource.org/licenses/Apache-2.0 Apache 2.0
  */
 
-namespace Amadeus\Client\RequestOptions\Air\SellFromRecommendation;
+namespace Amadeus\Client\RequestOptions\Fare\MasterPricer;
 
 use Amadeus\Client\LoadParamsFromArray;
 
 /**
- * Itinerary
+ * CarrierFeeDetails
  *
- * @package Amadeus\Client\RequestOptions\Air\SellFromRecommendation
- * @author dieter <dermikagh@gmail.com>
+ * @package Amadeus\Client\RequestOptions\Fare\MasterPricer
+ * @author Friedemann Schmuhl <friedemann@schmuhl.eu>
  */
-class Itinerary extends LoadParamsFromArray
+class FeeDetails extends LoadParamsFromArray
 {
+    const SUB_TYPE_ALL = "A";
+    const SUB_TYPE_FARE_COMPONENT_AMOUNT = "FCA";
+    const SUB_TYPE_UNKNOWN = "UNK";
+
+    const OPTION_CARRIER_SERVICE = "CS";
+    const OPTION_EXEMPTED = "EX";
+    const OPTION_MANUALLY_INCLUDED = "IN";
+    const OPTION_INDUSTRY_SERVICE = "IS";
+
     /**
-     * Departure location
+     * Carrier fee code
+     *
+     * self::SUB_TYPE_*
      *
      * @var string
      */
-    public $from;
+    public $subType;
 
     /**
-     * Arrival location
+     * Status (automated, manually added, exempted). Default is automated
+     * self::OPTION_*
      *
      * @var string
      */
-    public $to;
+    public $option;
 
     /**
-     * Flight segments
+     * Associated amounts : amounts to take into account to calculate fee.
      *
-     * @var Segment[]
+     * @var MonetaryDetails[]
      */
-    public $segments = [];
+    public $monetaryDetails;
 }

@@ -20,36 +20,46 @@
  * @license https://opensource.org/licenses/Apache-2.0 Apache 2.0
  */
 
-namespace Amadeus\Client\RequestOptions\Air\SellFromRecommendation;
+namespace Amadeus\Client\RequestOptions\Fare\MasterPricer;
 
 use Amadeus\Client\LoadParamsFromArray;
 
 /**
- * Itinerary
+ * MonetaryDetails
  *
- * @package Amadeus\Client\RequestOptions\Air\SellFromRecommendation
- * @author dieter <dermikagh@gmail.com>
+ * @package Amadeus\Client\RequestOptions\Fare\MasterPricer
+ * @author Friedemann Schmuhl <friedemann@schmuhl.eu>
  */
-class Itinerary extends LoadParamsFromArray
+class MonetaryDetails extends LoadParamsFromArray
 {
+    const TYPE_QUALIFIER_ASSOCIATED_FEE = "C";
+
     /**
-     * Departure location
+     * Qualifier
+     * self::TYPE_QUALIFIER_*
      *
      * @var string
      */
-    public $from;
+    public $typeQualifier = self::TYPE_QUALIFIER_ASSOCIATED_FEE;
 
     /**
-     * Arrival location
+     * Amount
      *
      * @var string
      */
-    public $to;
+    public $amount;
 
     /**
-     * Flight segments
+     * Currency
      *
-     * @var Segment[]
+     * @var string
      */
-    public $segments = [];
+    public $currency;
+
+    /**
+     * Location
+     *
+     * @var string
+     */
+    public $location;
 }

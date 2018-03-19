@@ -20,36 +20,32 @@
  * @license https://opensource.org/licenses/Apache-2.0 Apache 2.0
  */
 
-namespace Amadeus\Client\RequestOptions\Air\SellFromRecommendation;
+namespace Amadeus\Client\Struct\Fare\MasterPricer;
 
-use Amadeus\Client\LoadParamsFromArray;
+use Amadeus\Client\RequestOptions\Fare\MasterPricer\MonetaryDetails as MonetaryDetailsRequest;
 
 /**
- * Itinerary
+ * AssociatedAmounts
  *
- * @package Amadeus\Client\RequestOptions\Air\SellFromRecommendation
- * @author dieter <dermikagh@gmail.com>
+ * @package Amadeus\Client\Struct\Fare\MasterPricer
+ * @author Friedemann Schmuhl <friedemann@schmuhl.eu>
  */
-class Itinerary extends LoadParamsFromArray
+class AssociatedAmounts
 {
     /**
-     * Departure location
-     *
-     * @var string
+     * @var MonetaryDetails[]
      */
-    public $from;
+    public $monetaryDetails;
 
     /**
-     * Arrival location
+     * AssociatedAmounts constructor.
      *
-     * @var string
+     * @param MonetaryDetailsRequest[] $monetaryDetails
      */
-    public $to;
-
-    /**
-     * Flight segments
-     *
-     * @var Segment[]
-     */
-    public $segments = [];
+    public function __construct(array $monetaryDetails)
+    {
+        foreach ($monetaryDetails as $monetaryDetail) {
+            $this->monetaryDetails[] = new MonetaryDetails($monetaryDetail);
+        }
+    }
 }
