@@ -31,9 +31,9 @@ namespace Amadeus\Client\Struct\Fop;
 class GroupUsage
 {
     /**
-     * @var AttributeDetails[]
+     * @var AttributeDetails
      */
-    public $attributeDetails = [];
+    public $attributeDetails;
 
     /**
      * GroupUsage constructor.
@@ -42,6 +42,6 @@ class GroupUsage
      */
     public function __construct($fopType)
     {
-        $this->attributeDetails[] = new AttributeDetails($fopType);
+        $this->attributeDetails = new AttributeDetails($fopType);
     }
 }
