@@ -20,20 +20,20 @@
  * @license https://opensource.org/licenses/Apache-2.0 Apache 2.0
  */
 
-namespace Amadeus\Client\RequestOptions;
+namespace Amadeus\Client\Struct\Fop\CreateFormOfPayment;
+
+use Amadeus\Client\Struct\Fop\PaymentModule;
 
 /**
- * Command_Cryptic Request Options
+ * PaymentModule14
  *
- * @package Amadeus\Client\RequestOptions
+ * @package Amadeus\Client\Struct\Fop\CreateFormOfPayment
  * @author Dieter Devlieghere <dermikagh@gmail.com>
  */
-class CommandCrypticOptions extends Base
+class PaymentModule14 extends PaymentModule
 {
     /**
-     * The cryptic entry to be performed.
-     *
-     * @var string
+     * @var GroupUsage14
      */
-    public $entry;
+    public $groupUsage;
 }

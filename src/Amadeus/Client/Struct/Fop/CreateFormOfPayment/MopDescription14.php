@@ -20,20 +20,20 @@
  * @license https://opensource.org/licenses/Apache-2.0 Apache 2.0
  */
 
-namespace Amadeus\Client\RequestOptions;
+namespace Amadeus\Client\Struct\Fop\CreateFormOfPayment;
+
+use Amadeus\Client\Struct\Fop\MopDescription;
 
 /**
- * Command_Cryptic Request Options
+ * MopDescription14
  *
- * @package Amadeus\Client\RequestOptions
+ * @package Amadeus\Client\Struct\Fop\CreateFormOfPayment
  * @author Dieter Devlieghere <dermikagh@gmail.com>
  */
-class CommandCrypticOptions extends Base
+class MopDescription14 extends MopDescription
 {
     /**
-     * The cryptic entry to be performed.
-     *
-     * @var string
+     * @var PaymentModule14
      */
-    public $entry;
+    public $paymentModule;
 }

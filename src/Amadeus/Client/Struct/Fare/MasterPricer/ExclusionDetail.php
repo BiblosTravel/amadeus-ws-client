@@ -20,20 +20,47 @@
  * @license https://opensource.org/licenses/Apache-2.0 Apache 2.0
  */
 
-namespace Amadeus\Client\RequestOptions;
+namespace Amadeus\Client\Struct\Fare\MasterPricer;
 
 /**
- * Command_Cryptic Request Options
+ * ExclusionDetail
  *
- * @package Amadeus\Client\RequestOptions
+ * @package Amadeus\Client\Struct\Fare\MasterPricer
  * @author Dieter Devlieghere <dermikagh@gmail.com>
  */
-class CommandCrypticOptions extends Base
+class ExclusionDetail
 {
+    const IDENT_EXCLUDED = 'X';
+
+    const QUAL_AIRPORT = 'A';
+    const QUAL_CITY = 'C';
+
     /**
-     * The cryptic entry to be performed.
+     * @var string
+     */
+    public $exclusionIdentifier;
+
+    /**
+     * @var string
+     */
+    public $locationId;
+
+    /**
+     * self::QUAL_*
      *
      * @var string
      */
-    public $entry;
+    public $airportCityQualifier;
+
+    /**
+     * ExclusionDetail constructor.
+     *
+     * @param string $locationId
+     * @param string $exclusionIdentifier
+     */
+    public function __construct($locationId, $exclusionIdentifier = self::IDENT_EXCLUDED)
+    {
+        $this->exclusionIdentifier = $exclusionIdentifier;
+        $this->locationId = $locationId;
+    }
 }

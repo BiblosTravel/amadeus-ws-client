@@ -20,20 +20,31 @@
  * @license https://opensource.org/licenses/Apache-2.0 Apache 2.0
  */
 
-namespace Amadeus\Client\RequestOptions;
+namespace Amadeus\Client\Struct\Fop\CreateFormOfPayment;
+
+use Amadeus\Client\Struct\Fop\AttributeDetails;
+use Amadeus\Client\Struct\Fop\GroupUsage;
 
 /**
- * Command_Cryptic Request Options
+ * GroupUsage14
  *
- * @package Amadeus\Client\RequestOptions
+ * @package Amadeus\Client\Struct\Fop\CreateFormOfPayment
  * @author Dieter Devlieghere <dermikagh@gmail.com>
  */
-class CommandCrypticOptions extends Base
+class GroupUsage14 extends GroupUsage
 {
     /**
-     * The cryptic entry to be performed.
-     *
-     * @var string
+     * @var AttributeDetails
      */
-    public $entry;
+    public $attributeDetails = [];
+
+    /**
+     * GroupUsage constructor.
+     *
+     * @param string $fopType AttributeDetails::TYPE_*
+     */
+    public function __construct($fopType)
+    {
+        $this->attributeDetails = new AttributeDetails($fopType);
+    }
 }
