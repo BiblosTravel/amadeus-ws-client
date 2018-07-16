@@ -27,10 +27,10 @@ use Amadeus\Client\RequestOptions\TicketRetrieveListOfTSMOptions;
 use Amadeus\Client\Struct;
 
 /**
- * RetrieveListOfTSM Request converter
+ * Ticket_RetrieveListOfTSMC Request converter
  *
  * @package Amadeus\Client\RequestCreator\Converter\Ticket
- * @author Dieter Devlieghere <dermikagh@gmail.com>
+ * @author Mike Hernas <m@hern.as>
  */
 class RetrieveListOfTSMConv extends BaseConverter
 {

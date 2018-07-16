@@ -22,6 +22,7 @@
 
 namespace Amadeus\Client\Struct\Fare;
 
+use Amadeus\Client\RequestOptions\Fare\MPTicketingPriceScheme;
 use Amadeus\Client\RequestOptions\Fare\MPFareFamily;
 use Amadeus\Client\RequestOptions\Fare\MPItinerary;
 use Amadeus\Client\RequestOptions\FareMasterPricerCalendarOptions;
@@ -89,6 +90,10 @@ class MasterPricerTravelBoardSearch extends BaseMasterPricerMessage
      * @var MasterPricer\Itinerary[]
      */
     public $itinerary = [];
+    /**
+     * @var MPTicketingPriceScheme
+     */
+    public $ticketingPriceScheme;
     /**
      * @var mixed
      */
@@ -212,14 +217,25 @@ class MasterPricerTravelBoardSearch extends BaseMasterPricerMessage
         );
         $tmpItinerary->timeDetails = new MasterPricer\TimeDetails($opt->date);
 
-        if ($this->checkAnyNotEmpty($opt->airlineOptions, $opt->requestedFlightTypes, $opt->includedConnections, $opt->excludedConnections, $opt->nrOfConnections, $opt->noAirportChange)) {
+        if ($this->checkAnyNotEmpty(
+            $opt->airlineOptions,
+            $opt->requestedFlightTypes,
+            $opt->includedConnections,
+            $opt->excludedConnections,
+            $opt->nrOfConnections,
+            $opt->noAirportChange,
+            $opt->cabinClass,
+            $opt->cabinOption
+        )) {
             $tmpItinerary->flightInfo = new MasterPricer\FlightInfo(
                 $opt->airlineOptions,
                 $opt->requestedFlightTypes,
                 $opt->includedConnections,
                 $opt->excludedConnections,
                 $opt->nrOfConnections,
-                $opt->noAirportChange
+                $opt->noAirportChange,
+                $opt->cabinClass,
+                $opt->cabinOption
             );
         }
 

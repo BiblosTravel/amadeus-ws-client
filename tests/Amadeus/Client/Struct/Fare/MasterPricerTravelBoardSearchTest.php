@@ -34,6 +34,7 @@ use Amadeus\Client\RequestOptions\Fare\MPItinerary;
 use Amadeus\Client\RequestOptions\Fare\MPLocation;
 use Amadeus\Client\RequestOptions\Fare\MPPassenger;
 use Amadeus\Client\RequestOptions\Fare\MPFeeId;
+use Amadeus\Client\RequestOptions\Fare\MPTicketingPriceScheme;
 use Amadeus\Client\RequestOptions\FareMasterPricerTbSearch;
 use Amadeus\Client\Struct\Fare\MasterPricer\BooleanExpression;
 use Amadeus\Client\Struct\Fare\MasterPricer\CabinId;
@@ -1751,4 +1752,57 @@ class MasterPricerTravelBoardSearchTest extends BaseTestCase
 
         $this->assertNull($msg->itinerary[0]->flightInfo);
     }
+
+    public function testCanMakeMessageWithTicketingPriceScheme()
+    {
+        $msg = new MasterPricerTravelBoardSearch(
+            new FareMasterPricerTbSearch([
+                'nrOfRequestedPassengers' => 1,
+                'passengers' => [
+                    new MPPassenger([
+                        'type' => MPPassenger::TYPE_ADULT,
+                        'count' => 1
+                    ])
+                ],
+                'itinerary' => [
+                    new MPItinerary([
+                        'departureLocation' => new MPLocation(['city' => 'NYC']),
+                        'arrivalLocation' => new MPLocation(['city' => 'LAX']),
+                        'date' => new MPDate([
+                            'dateTime' => new \DateTime('2018-07-05T00:00:00+0000', new \DateTimeZone('UTC'))
+                        ]),
+                    ]),
+                ],
+                'ticketingPriceScheme' => new MPTicketingPriceScheme([
+                    'referenceNumber' => '00012345'
+                ])
+            ])
+        );
+
+        $this->assertInstanceOf('Amadeus\Client\Struct\Fare\MasterPricer\TicketingPriceScheme', $msg->fareOptions->ticketingPriceScheme);
+        $this->assertEquals('00012345', $msg->fareOptions->ticketingPriceScheme->referenceNumber);
+    }
+
+    public function testCanSpecifyCabinPerItinerary()
+    {
+        $opt = new FareMasterPricerTbSearch();
+        $opt->nrOfRequestedResults = 200;
+        $opt->nrOfRequestedPassengers = 1;
+        $opt->passengers[] = new MPPassenger([
+            'type' => MPPassenger::TYPE_ADULT,
+            'count' => 1
+        ]);
+        $opt->itinerary[] = new MPItinerary([
+            'departureLocation' => new MPLocation(['city' => 'BRU']),
+            'arrivalLocation' => new MPLocation(['city' => 'LON']),
+            'date' => new MPDate(['dateTime' => new \DateTime('2017-01-15T00:00:00+0000', new \DateTimeZone('UTC'))]),
+            'cabinClass' => FareMasterPricerTbSearch::CABIN_ECONOMY_PREMIUM
+        ]);
+
+        $message = new MasterPricerTravelBoardSearch($opt);
+
+        $this->assertEquals(FareMasterPricerTbSearch::CABIN_ECONOMY_PREMIUM, $message->itinerary[0]->flightInfo->cabinId->cabin);
+        $this->assertNull($message->itinerary[0]->flightInfo->cabinId->cabinQualifier);
+    }
+
 }

@@ -23,18 +23,11 @@
 namespace Amadeus\Client\RequestOptions;
 
 /**
- * Ticket_RetrieveListOfTSM Request options.
+ * Ticket_RetrieveListOfTSM Request Options
  *
  * @package Amadeus\Client\RequestOptions
- * @author Dieter Devlieghere <dermikagh@gmail.com>
+ * @author Mike Hernas <m@hern.as>
  */
 class TicketRetrieveListOfTSMOptions extends Base
 {
-    /**
-     * passenger to display.
-     *
-     * @var int
-     */
-    public $passenger;
-
 }

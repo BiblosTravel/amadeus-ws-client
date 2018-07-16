@@ -24,42 +24,31 @@ namespace Amadeus\Client\Struct\Ticket;
 
 use Amadeus\Client\RequestOptions\TicketRetrieveListOfTSMOptions;
 use Amadeus\Client\Struct\BaseWsMessage;
+use Amadeus\Client\Struct\Ticket\RetrieveListOfTSM\DeadIndicator;
+use Amadeus\Client\Struct\Ticket\RetrieveListOfTSM\StatusDetails;
 
 /**
  * Ticket_RetrieveListOfTSM request structure
  *
  * @package Amadeus\Client\Struct\Ticket
- * @author Dieter Devlieghere <dermikagh@gmail.com>
+ * @author Mike Hernas <m@hern.as>
  */
 class RetrieveListOfTSM extends BaseWsMessage
 {
     /**
-     * @var string
+     * @var DeadIndicator
      */
-    public $passengerTattoo;
+    public $deadIndicator;
 
     /**
-     * @var string
-     */
-    public $deadIndicator = array(
-        'statusDetails' => [
-            'indicator' => 'DED',
-            'action' => 0
-        ]
-    );
-
-    /**
-     * TicketRetrieveListOfTSMOptions constructor.
+     * RetrieveListOfTSM constructor.
      *
      * @param TicketRetrieveListOfTSMOptions $params
      */
     public function __construct(TicketRetrieveListOfTSMOptions $params)
     {
-        $this->passengerTattoo = [
-            'passengerReference' => [
-                'type' => 'P',
-                'value' => $params->passenger
-            ]
-        ];
+        $this->deadIndicator = new DeadIndicator(
+          new StatusDetails(StatusDetails::IND_DEAD, 0)
+        );
     }
 }
