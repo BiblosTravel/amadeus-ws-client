@@ -20,30 +20,27 @@
  * @license https://opensource.org/licenses/Apache-2.0 Apache 2.0
  */
 
-namespace Amadeus\Client\Struct\Air\RetrieveSeatMap;
+namespace Amadeus\Client\RequestCreator\Converter\SalesReports;
+
+use Amadeus\Client\RequestCreator\Converter\BaseConverter;
+use Amadeus\Client\RequestOptions\SalesReportsDisplayNetRemitReportOptions;
+use Amadeus\Client\Struct;
 
 /**
- * ResControlInfo
+ * DisplayNetRemitReport Request converter
  *
- * @package Amadeus\Client\Struct\Air\RetrieveSeatMap
- * @author Dieter Devlieghere <dermikagh@gmail.com>
+ * @package Amadeus\Client\RequestCreator\Converter\SalesReports
+ * @author Artem Zakharchenko <artz.relax@gmail.com>
  */
-class ResControlInfo
+class DisplayNetRemitReportConv extends BaseConverter
 {
     /**
-     * @var Reservation
+     * @param SalesReportsDisplayNetRemitReportOptions $requestOptions
+     * @param int|string $version
+     * @return Struct\SalesReports\DisplayNetRemitReport
      */
-    public $reservation;
-
-    /**
-     * ResControlInfo constructor.
-     *
-     * @param string $recordLocator
-     * @param string $companyId
-     * @param \DateTime|null $date
-     */
-    public function __construct($recordLocator, $companyId, $date = null)
+    public function convert($requestOptions, $version)
     {
-        $this->reservation = new Reservation($recordLocator, $companyId, $date);
+        return new Struct\SalesReports\DisplayNetRemitReport($requestOptions);
     }
 }

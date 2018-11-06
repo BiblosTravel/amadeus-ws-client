@@ -20,30 +20,31 @@
  * @license https://opensource.org/licenses/Apache-2.0 Apache 2.0
  */
 
-namespace Amadeus\Client\Struct\Air\RetrieveSeatMap;
+namespace Amadeus\Client\Struct\SalesReports\DisplayDailyOrSummarizedReport;
 
 /**
- * ResControlInfo
+ * SalesReportIdentification
  *
- * @package Amadeus\Client\Struct\Air\RetrieveSeatMap
- * @author Dieter Devlieghere <dermikagh@gmail.com>
+ * @package Amadeus\Client\Struct\SalesReports\DisplayDailyOrSummarizedReport
+ * @author Artem Zakharchenko <artz.relax@gmail.com>
  */
-class ResControlInfo
+class SalesReportIdentification
 {
     /**
-     * @var Reservation
+     * A number allocated to a group or an item.
+     *
+     * @var ItemNumberDetails[]
      */
-    public $reservation;
+    public $itemNumberDetails;
 
     /**
-     * ResControlInfo constructor.
+     * SalesReportIdentification constructor.
      *
-     * @param string $recordLocator
-     * @param string $companyId
-     * @param \DateTime|null $date
+     * @param $number
+     * @param $type
      */
-    public function __construct($recordLocator, $companyId, $date = null)
+    public function __construct($number, $type)
     {
-        $this->reservation = new Reservation($recordLocator, $companyId, $date);
+        $this->itemNumberDetails[] = new ItemNumberDetails($number, $type);
     }
 }
