@@ -22,48 +22,33 @@
 
 namespace Amadeus\Client\Struct\Fare\MasterPricer;
 
-use Amadeus\Client\RequestOptions\Fare\MPTripDetails;
-
 /**
- * TripDetails
- *
- * Amadeus currently not uses this node, but may be used in future versions.
+ * FormOfPaymentDetails
  *
  * @package Amadeus\Client\Struct\Fare\MasterPricer
- * @author Dieter Devlieghere <dermikagh@gmail.com>
+ * @author Artem Zakharchenko <artz.relax@gmail.com>
  */
-class TripDetails
+class FormOfPaymentDetails
 {
-    const FLEXIBILITY_COMBINED = 'C';
-    const FLEXIBILITY_MINUS = 'M';
-    const FLEXIBILITY_PLUS = 'P';
-    const FLEXIBILITY_ARRIVAL_BY = 'TA';
-    const FLEXIBILITY_DEPART_FROM = 'TD';
-
     /**
      * @var string
      */
-    public $flexibilityQualifier;
+    public $type;
 
     /**
-     * @var int
+     * @var string|int|float|null
      */
-    public $tripInterval;
+    public $chargedAmount;
 
     /**
-     * @var int
+     * @var string|null
      */
-    public $tripDuration;
+    public $creditCardNumber;
 
-    /**
-     * TripDetails constructor.
-     *
-     * @param MPTripDetails $tripDetails
-     */
-    public function __construct(MPTripDetails $tripDetails)
+    public function __construct($type, $chargedAmount = null, $creditCardNumber = null)
     {
-        $this->flexibilityQualifier = $tripDetails->flexibilityQualifier;
-        $this->tripInterval = $tripDetails->tripInterval;
-        $this->tripDuration = $tripDetails->tripDuration;
+        $this->type = $type;
+        $this->chargedAmount = $chargedAmount;
+        $this->creditCardNumber = $creditCardNumber;
     }
 }
